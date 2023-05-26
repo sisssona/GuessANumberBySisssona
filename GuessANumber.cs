@@ -11,15 +11,23 @@ namespace GuessANumber
         {
             Random randomNumber = new Random();
             int computerNumber = randomNumber.Next(1, 101);
+            int count = 0;
 
             while (true)
             {
                 Console.Write("Guess a number (1 - 101): ");
                 string playerInput = Console.ReadLine();
+                count++;
                 bool isValid = int.TryParse(playerInput, out int playerNumber);
+
 
                 if (isValid)
                 {
+                    if (count == 4)
+                    {
+                        Console.WriteLine("Game over!");
+                        break;
+                    }
                     if (playerNumber == computerNumber)
                     {
                         Console.WriteLine("You guessed it!");
